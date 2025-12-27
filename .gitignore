@@ -1,0 +1,5 @@
+/build/extracted-include-protos/main/google/api/annotations.proto
+/build
+/gradle
+.idea
+.gradle
