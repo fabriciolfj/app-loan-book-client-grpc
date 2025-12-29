@@ -1,6 +1,6 @@
 package com.github.fabriciolfj.book_client;
 
-import com.example.grpc.book.BookCategory;
+import com.github.fabriciolfk.book_server.grpc.BookCategory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +28,9 @@ public class BookController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/category/{category}")
-    public List<BookDTO> findByCategory(@PathVariable String category) {
-        BookCategory bookCategory = BookCategory.valueOf(category);
-        return bookClient.findBooksByCategory(bookCategory).stream()
-                .map(BookDTO::fromProto)
-                .collect(Collectors.toList());
+    @GetMapping("/async/{query}")
+    public void listBooksAsync(@PathVariable("query") final String query) throws InterruptedException {
+        bookClient.searchBooksAsync(query, 1000);
     }
 
     @PostMapping

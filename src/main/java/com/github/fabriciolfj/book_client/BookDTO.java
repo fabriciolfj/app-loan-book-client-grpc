@@ -1,5 +1,7 @@
 package com.github.fabriciolfj.book_client;
 
+import com.github.fabriciolfk.book_server.grpc.Book;
+
 public record BookDTO(
         int id,
         String title,
@@ -8,7 +10,7 @@ public record BookDTO(
         String category,
         double price
 ) {
-    public static BookDTO fromProto(com.example.grpc.book.Book book) {
+    public static BookDTO fromProto(Book book) {
         return new BookDTO(
                 book.getId(),
                 book.getTitle(),
